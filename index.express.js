@@ -43,9 +43,9 @@ function doAfter(data) {
     return;
   }
 
-  console.log('repo === youdar.net?');
-  if (repo.name === 'youdar.net' && commits.length > 0) {
-    updateYoudarNet();
+  console.log('repo === youdar?');
+  if (repo.name === 'youdar' && commits.length > 0) {
+    return updateYoudarNet();
   }
 }
 
@@ -53,7 +53,7 @@ function updateYoudarNet() {
   var cmd = 'cd /usr/share/nginx/html/next.youdar.net/youdar && git pull origin master';
 
   console.log('execute cmd:', cmd);
-  exec(cmd, function (error, stdout, stderr) {
+  return exec(cmd, function (error, stdout, stderr) {
     console.log(cmd, stdout, stderr);
   });
 }
