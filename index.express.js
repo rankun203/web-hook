@@ -35,6 +35,7 @@ var server = app.listen(1394, function () {
 });
 
 function doAfter(data) {
+  console.log('doAfter data');
   var repo = data.repository;
   var commits = data.commits;
 
@@ -42,6 +43,7 @@ function doAfter(data) {
     return;
   }
 
+  console.log('repo === youdar.net?');
   if (repo === 'youdar.net' && commits.length > 0) {
     updateYoudarNet();
   }
@@ -50,7 +52,7 @@ function doAfter(data) {
 function updateYoudarNet() {
   var cmd = 'cd /usr/share/nginx/html/next.youdar.net/youdar && git pull origin master';
 
-
+  console.log('execute cmd:', cmd);
   exec(cmd, function (error, stdout, stderr) {
     console.log(cmd, stdout, stderr);
   });
