@@ -19,14 +19,14 @@ app.use(function (req, res, next) {
   console.log('\n\n');
   console.log(req.url);
   console.log(req.body); // populated!
-
-  doAfter(req.body);
-
   next();
 });
 
 app.get('/', function (req, res, next) {
   console.log('REQ', new Date());
+
+  doAfter(req.body);
+
   res.end('Hello world.\n');
 });
 
