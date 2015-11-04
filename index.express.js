@@ -44,7 +44,7 @@ function doAfter(data) {
   }
 
   console.log('repo === youdar.net?');
-  if (repo === 'youdar.net' && commits.length > 0) {
+  if (repo.name === 'youdar.net' && commits.length > 0) {
     updateYoudarNet();
   }
 }
