@@ -26,6 +26,10 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.all('/o', function (req, res, next) {
   log.debug(req.url);
   log.debug(req.body); // populated!
+  res.status(200).json({
+    code: 0,
+    msg: 'success'
+  });
 });
 
 // execute a command
