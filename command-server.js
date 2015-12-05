@@ -68,12 +68,15 @@ app.all('/c/:cid', function (req, res, next) {
 
   // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
-  exec(command.command, function (error, stdout, stderr) {
-    if (error) log.error('error', error);
+  exec(command.command, {
+      timeout: 1000 * 60 * 10
+    },
+    function (error, stdout, stderr) {
+      if (error) log.error('error', error);
 
-    log.debug(stdout);
-    log.debug(stderr);
-  });
+      log.debug(stdout);
+      log.debug(stderr);
+    });
 
   // notify the caller
   return res.status(200).json({
