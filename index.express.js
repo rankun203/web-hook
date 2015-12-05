@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var express = require('express');
+var express    = require('express');
 var bodyParser = require('body-parser');
-var exec = require('child_process').exec;
+var exec       = require('child_process').exec;
 
 var app = express();
 
@@ -36,7 +36,7 @@ var server = app.listen(1394, function () {
 
 function doAfter(data) {
   console.log('doAfter data');
-  var repo = data.repository;
+  var repo    = data.repository;
   var commits = data.commits;
 
   if (!repo || !commits) {
@@ -57,3 +57,29 @@ function updateYoudarNet() {
     console.log(cmd, stdout, stderr);
   });
 }
+
+
+var commands = [
+  {
+    id: 'updateSAWeb',
+    desc: 'Update Simple Accounting Frontend Website',
+    command: ''
+  }
+];
+app.get('/c/{cid}', function (req, res, next) {
+  var filteredCommands = commands.filter(function (command) {
+    return command.id === 'updateSAWeb'
+  });
+  if (filteredCommands.length === 0) {
+    next();
+  }
+
+  var command = filteredCommands[0];
+
+  console.log('execute cmd: id=', command.id, ', command=', command.command);
+  exec(command, function (error, stdout, stderr) {
+    console.log(command, stdout, stderr);
+  });
+
+  return res.status(200).send('Bad Request');
+});
