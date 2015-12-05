@@ -9,9 +9,12 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var exec       = require('child_process').exec;
 var log        = require('log4js').getLogger('command-server');
+var rawBody    = require('./rawBody');
 var commands   = require('./commands');
 
 var app = express();
+
+app.use(rawBody);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
@@ -49,7 +52,7 @@ app.all('/c/:cid', function (req, res, next) {
   var command = filteredCommands[0];
 
   // If there is a test, execute it
-  var matches = req.body.match(command.test).length > 0;
+  var matches = req.rawBody.match(command.test).length > 0;
   if (!matches) return res.json({
     code: -2,
     msg: 'not match'
