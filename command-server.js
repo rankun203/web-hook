@@ -69,7 +69,7 @@ app.all('/c/:cid', function (req, res, next) {
   // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
   exec(command.command, {
-      timeout: 1000 * 60 * 10
+      timeout: command.timeout || 1000 * 60 * 10
     },
     function (error, stdout, stderr) {
       if (error) log.error('error', error);
