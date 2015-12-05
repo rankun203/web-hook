@@ -22,7 +22,14 @@ app.use(bodyParser.json());
 // parse application/vnd.api+json as json
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
-app.get('/c/:cid', function (req, res, next) {
+// print all request info
+app.all('/o', function (req, res, next) {
+  log.debug(req.url);
+  log.debug(req.body); // populated!
+});
+
+// execute a command
+app.all('/c/:cid', function (req, res, next) {
   var cid = req.params.cid;
 
   var filteredCommands = commands.filter(function (command) {
