@@ -52,11 +52,14 @@ app.all('/c/:cid', function (req, res, next) {
   var command = filteredCommands[0];
 
   // If there is a test, execute it
-  var matches = req.rawBody.match(command.test).length > 0;
-  if (!matches) return res.json({
-    code: -2,
-    msg: 'not match'
-  });
+  if (command.test) {
+    var testReg = new RegExp(command.test);
+    var matches = testReg.test(req.rawBody);
+    if (!matches) return res.json({
+      code: -2,
+      msg: 'not match'
+    });
+  }
 
   // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
