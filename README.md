@@ -71,7 +71,8 @@ Then you got the body in the console.
 
 #### Test pattern
 
-The `test` pattern used in commands.js will be initialized to a RegExp object by
+The `test` pattern to test the request body,
+is used in commands.js will be initialized to a RegExp object by
 
 ```
 var testReg = new RegExp(command.test);
