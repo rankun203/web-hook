@@ -39,12 +39,23 @@ app.all('/c/:cid', function (req, res, next) {
   var filteredCommands = commands.filter(function (command) {
     return command.id === cid
   });
+
+  // If there is no valid command
   if (filteredCommands.length === 0) {
     next();
   }
 
+  // If there is a test, execute it
+  var matches = a.match(command.test).length > 0;
+  if (!matches) return res.json({
+    code: -2,
+    msg: 'not match'
+  });
+
+  // extract command
   var command = filteredCommands[0];
 
+  // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
   exec(command.command, function (error, stdout, stderr) {
     if (error) log.error('error', error);
@@ -53,6 +64,7 @@ app.all('/c/:cid', function (req, res, next) {
     log.debug(stderr);
   });
 
+  // notify the caller
   return res.status(200).json({
     code: 0,
     msg: 'Executing...',
@@ -64,7 +76,7 @@ app.all('/c/:cid', function (req, res, next) {
 // 404
 app.use(function (req, res, next) {
   res.status(404);
-  res.json({
+  return res.json({
     code: -1,
     msg: '404'
   });
