@@ -57,7 +57,7 @@ app.all('/c/:cid', function (req, res, next) {
   if (command.test) {
     var testReg = new RegExp(command.test);
     var matches = testReg.test(req.rawBody);
-    var msg     = 'Not match';
+    var msg     = 'Test not match';
 
     log.debug(msg);
     if (!matches) return res.json({
