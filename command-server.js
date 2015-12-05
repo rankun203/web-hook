@@ -39,6 +39,8 @@ app.all('/o', function (req, res, next) {
 app.all('/c/:cid', function (req, res, next) {
   var cid = req.params.cid;
 
+  log.debug('Incoming command: ', cid);
+
   var filteredCommands = commands.filter(function (command) {
     return command.id === cid
   });
@@ -55,9 +57,12 @@ app.all('/c/:cid', function (req, res, next) {
   if (command.test) {
     var testReg = new RegExp(command.test);
     var matches = testReg.test(req.rawBody);
+    var msg     = 'Not match';
+
+    log.debug(msg);
     if (!matches) return res.json({
       code: -2,
-      msg: 'not match'
+      msg: msg
     });
   }
 
