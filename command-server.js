@@ -5,12 +5,16 @@
  */
 
 
-var express    = require('express');
-var bodyParser = require('body-parser');
-var exec       = require('child_process').exec;
-var log        = require('log4js').getLogger('command-server');
-var rawBody    = require('./rawBody');
-var commands   = require('./commands');
+var express        = require('express');
+var bodyParser     = require('body-parser');
+var exec           = require('child_process').exec;
+var log            = require('log4js').getLogger('command-server');
+var rawBody        = require('./rawBody');
+var commands       = require('./commands');
+var secretCommands = require('./secretCommands');
+
+// Concat commands and secretCommands
+commands = commands.concat(secretCommands);
 
 var app = express();
 
