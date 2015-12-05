@@ -45,15 +45,15 @@ app.all('/c/:cid', function (req, res, next) {
     next();
   }
 
+  // extract command
+  var command = filteredCommands[0];
+
   // If there is a test, execute it
-  var matches = a.match(command.test).length > 0;
+  var matches = req.body.match(command.test).length > 0;
   if (!matches) return res.json({
     code: -2,
     msg: 'not match'
   });
-
-  // extract command
-  var command = filteredCommands[0];
 
   // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
