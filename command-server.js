@@ -64,4 +64,3 @@ var port   = 1394;
 var server = app.listen(port, function () {
   log.debug('Listening... :', port);
 });
-
