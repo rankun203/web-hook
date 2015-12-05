@@ -77,7 +77,7 @@ The `test` pattern used in commands.js will be initialized to a RegExp object by
 var testReg = new RegExp(command.test);
 ```
 
-So be careful with the syntax, basically you need one more `\` in your test pattern.
+So be careful with the syntax, basically you need one more `\` in your regex test pattern.
 
 `\d` -> `\\d`
 
