@@ -36,7 +36,6 @@ app.get('/c/:cid', function (req, res, next) {
 
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
   exec(command.command, function (error, stdout, stderr) {
-    log.debug(new Date());
     if (error) log.error('error', error);
 
     log.debug(stdout);
