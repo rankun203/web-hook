@@ -3,7 +3,7 @@ var commands = [
     id: 'updateSAWeb',
     desc: 'Update Simple Accounting Frontend Website',
     test: 'refs/heads/dev',
-    command: 'cd /home/rankun203/git/mine/outsourcing/simple-accounting/simple-accounting-web && git checkout dev && git pull'
+    command: 'cd /home/rankun203/git/mine/outsourcing/simple-accounting/simple-accounting-web && git pull origin dev && git checkout dev'
   },
   {
     id: 'helloWorld',
