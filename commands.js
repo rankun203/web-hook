@@ -2,7 +2,7 @@ var commands = [
   {
     id: 'updateSAWeb',
     desc: 'Update Simple Accounting Frontend Website',
-    test: 'refs/heads/dev',
+    test: 'refs/heads/sa.mindfine.com',
     timeout: 1000 * 60 * 10,
     command: 'cd /alidata/docker/git/simple-accounting-web && . ./bin/updateWebsite.sh'
   },
