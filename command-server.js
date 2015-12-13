@@ -5,12 +5,16 @@
  */
 
 
-var express    = require('express');
-var bodyParser = require('body-parser');
-var exec       = require('child_process').exec;
-var log        = require('log4js').getLogger('command-server');
-var rawBody    = require('./rawBody');
-var commands   = require('./commands');
+var express        = require('express');
+var bodyParser     = require('body-parser');
+var exec           = require('child_process').exec;
+var log            = require('log4js').getLogger('command-server');
+var rawBody        = require('./rawBody');
+var commands       = require('./commands');
+var secretCommands = require('./secretCommands');
+
+// Concat commands and secretCommands
+commands = commands.concat(secretCommands);
 
 var app = express();
 
@@ -68,6 +72,7 @@ app.all('/c/:cid', function (req, res, next) {
 
   // execute
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
+  log.debug('command desc:', command.desc);
   exec(command.command, {
       timeout: command.timeout || 1000 * 60 * 10
     },
