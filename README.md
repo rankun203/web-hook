@@ -54,7 +54,7 @@ I just want to update my website automatically when I push dev branch to github.
   ```
 
 - Run command-server.js
-- Goto Github, add a hook, point to `http://server.com/c/updateByDev`
+- Goto Github, add a hook, point to `http://server.com:1394/c/updateByDev`
 - Push to your `dev` branch in that github repo
 - See the Changes!
 
