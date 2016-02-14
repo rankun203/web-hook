@@ -35,13 +35,28 @@ app.all('/o', function (req, res, next) {
   log.debug(req.body); // populated!
   res.status(200).json({
     code: 0,
-    msg: 'success'
+    msg : 'success'
   });
 });
 
 // execute a command
 app.all('/c/:cid', function (req, res, next) {
-  var cid = req.params.cid;
+  var cid     = req.params.cid,
+      verbose = req.query.verbose;
+
+  if (verbose) {
+    log.debug('req.headers:');
+    log.debug(req.headers);
+
+    log.debug('req.params:');
+    log.debug(req.params);
+
+    log.debug('req.query:');
+    log.debug(req.query);
+
+    log.debug('req.body:');
+    log.debug(req.body);
+  }
 
   log.debug('Incoming command: ', cid);
 
@@ -66,7 +81,7 @@ app.all('/c/:cid', function (req, res, next) {
     log.debug(msg);
     if (!matches) return res.json({
       code: -2,
-      msg: msg
+      msg : msg
     });
   }
 
@@ -74,19 +89,19 @@ app.all('/c/:cid', function (req, res, next) {
   log.debug('execute cmd: id=', command.id, 'command=', command.command);
   log.debug('command desc:', command.desc);
   exec(command.command, {
-      timeout: command.timeout || 1000 * 60 * 10
-    },
-    function (error, stdout, stderr) {
-      if (error) log.error('error', error);
+        timeout: command.timeout || 1000 * 60 * 10
+      },
+      function (error, stdout, stderr) {
+        if (error) log.error('error', error);
 
-      log.debug(stdout);
-      log.debug(stderr);
-    });
+        log.debug(stdout);
+        log.debug(stderr);
+      });
 
   // notify the caller
   return res.status(200).json({
-    code: 0,
-    msg: 'Executing...',
+    code   : 0,
+    msg    : 'Executing...',
     command: command
   });
 });
@@ -97,7 +112,7 @@ app.use(function (req, res, next) {
   res.status(404);
   return res.json({
     code: -1,
-    msg: '404'
+    msg : '404'
   });
 });
 
