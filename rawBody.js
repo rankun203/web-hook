@@ -5,10 +5,16 @@
 
 function rawBody(req, res, next) {
   req.rawBody = '';
-  req.on('data', function (chunk) {
-    req.rawBody += chunk
+  req.setEncoding('utf8');
+
+  req.on('data', function(chunk) { 
+    req.rawBody += chunk;
   });
-  next();
+
+  req.on('end', function() {
+    next();
+  });
 }
+
 
 module.exports = rawBody;
