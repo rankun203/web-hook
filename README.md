@@ -7,13 +7,14 @@ Server is now waiting for Command!
 
   ```
   git clone git@github.com:rankun203/web-hook.git
-  cd web-hook
+  cd web-hook && npm install
   ```
   
-- Edit commands.js
+- Prepare and edit secretCommands.js
 
   ```
-  subl ./commands.js
+  cp secretCommands.js.example secretCommands.js
+  vi ./secretCommands.js
   ```
   
 - Run the Server!
@@ -22,8 +23,35 @@ Server is now waiting for Command!
   ./command-server.js
   ```
 
-Now navigate to http://localhost:1394/c/helloWorld 
-to let your server execute a `echo "Hello World"` command :)
+Now navigate to `http://localhost:1394/c/helloworld `
+to command your server do `echo "Hello World"` :)
+
+Example output:
+
+```
+[2016-03-22 12:21:56.633] [DEBUG] command-server - Listening... : 1394
+[2016-03-22 12:22:11.665] [DEBUG] command-server - Incoming command:  helloworld
+[2016-03-22 12:22:11.667] [DEBUG] command-server - execute cmd: id= helloworld command= echo Hello World!
+[2016-03-22 12:22:11.668] [DEBUG] command-server - command desc: Print Hello world
+[2016-03-22 12:22:11.694] [DEBUG] command-server - Hello World!
+
+[2016-03-22 12:22:11.695] [DEBUG] command-server -
+```
+
+Example browser output:
+
+```
+{
+  code: 0,
+  msg: "Executing...",
+  command: {
+    id: "helloworld",
+    desc: "Print Hello world",
+    test: "",
+    command: "echo Hello World!"
+  }
+}
+```
 
 ### Command Example
 
@@ -37,6 +65,8 @@ to let your server execute a `echo "Hello World"` command :)
 ```
 
 ### Example
+
+**Commander:**
 
 I just want to update my website automatically when I push dev branch to github.
 
@@ -57,6 +87,17 @@ I just want to update my website automatically when I push dev branch to github.
 - Goto Github, add a hook, point to `http://server.com:1394/c/updateByDev`
 - Push to your `dev` branch in that github repo
 - See the Changes!
+
+**Speaker**
+
+Point to `http://server.com:1394/o` instead.
+
+Example output: 
+
+```
+[2016-03-23 00:12:05.429] [DEBUG] command-server - /o?value=world  
+[2016-03-23 00:12:05.430] [DEBUG] command-server - { msg: 'hello' }
+```
 
 ## FYI
 
