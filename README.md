@@ -38,6 +38,8 @@ to let your server execute a `echo "Hello World"` command :)
 
 ### Example
 
+**Commander:**
+
 I just want to update my website automatically when I push dev branch to github.
 
 - Edit commands.js
@@ -57,6 +59,10 @@ I just want to update my website automatically when I push dev branch to github.
 - Goto Github, add a hook, point to `http://server.com:1394/c/updateByDev`
 - Push to your `dev` branch in that github repo
 - See the Changes!
+
+**Speaker**
+
+point to `http://server.com:1394/o` instead.
 
 ## FYI
 
