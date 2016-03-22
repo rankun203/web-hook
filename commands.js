@@ -7,9 +7,10 @@ var commands = [
     command: 'cd /home/rankun203/git/mine/outsourcing/simple-accounting/simple-accounting-web && . ./bin/updateWebsite.sh'
   },
   {
-    id: 'helloWorld',
+    id: 'helloworld',
     desc: 'Print Hello world',
-    command: 'echo "Hello World"'
+    test: '',
+    command: 'echo Hello World!'
   }
 ];
 
