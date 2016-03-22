@@ -10,10 +10,11 @@ Server is now waiting for Command!
   cd web-hook && npm install
   ```
   
-- Edit commands.js
+- Prepare and edit secretCommands.js
 
   ```
-  subl ./commands.js
+  cp secretCommands.js.example secretCommands.js
+  vi ./secretCommands.js
   ```
   
 - Run the Server!
