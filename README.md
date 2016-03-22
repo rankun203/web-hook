@@ -62,7 +62,14 @@ I just want to update my website automatically when I push dev branch to github.
 
 **Speaker**
 
-point to `http://server.com:1394/o` instead.
+Point to `http://server.com:1394/o` instead.
+
+Example output: 
+
+```
+[2016-03-23 00:12:05.429] [DEBUG] command-server - /o?value=world  
+[2016-03-23 00:12:05.430] [DEBUG] command-server - { msg: 'hello' }
+```
 
 ## FYI
 
