@@ -26,6 +26,33 @@ Server is now waiting for Command!
 Now navigate to http://localhost:1394/c/helloWorld 
 to let your server execute a `echo "Hello World"` command :)
 
+Example output:
+
+```
+[2016-03-22 12:21:56.633] [DEBUG] command-server - Listening... : 1394
+[2016-03-22 12:22:11.665] [DEBUG] command-server - Incoming command:  helloworld
+[2016-03-22 12:22:11.667] [DEBUG] command-server - execute cmd: id= helloworld command= echo Hello World!
+[2016-03-22 12:22:11.668] [DEBUG] command-server - command desc: Print Hello world
+[2016-03-22 12:22:11.694] [DEBUG] command-server - Hello World!
+
+[2016-03-22 12:22:11.695] [DEBUG] command-server -
+```
+
+Example browser output:
+
+```
+{
+  code: 0,
+  msg: "Executing...",
+  command: {
+    id: "helloworld",
+    desc: "Print Hello world",
+    test: "",
+    command: "echo Hello World!"
+  }
+}
+```
+
 ### Command Example
 
 ```
