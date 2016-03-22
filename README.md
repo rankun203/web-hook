@@ -23,8 +23,8 @@ Server is now waiting for Command!
   ./command-server.js
   ```
 
-Now navigate to http://localhost:1394/c/helloWorld 
-to let your server execute a `echo "Hello World"` command :)
+Now navigate to `http://localhost:1394/c/helloworld `
+to command your server do `echo "Hello World"` :)
 
 Example output:
 
