@@ -7,7 +7,7 @@ Server is now waiting for Command!
 
   ```
   git clone git@github.com:rankun203/web-hook.git
-  cd web-hook
+  cd web-hook && npm install
   ```
   
 - Edit commands.js
