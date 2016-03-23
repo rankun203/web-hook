@@ -32,6 +32,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 // print all request info
 app.all('/o', function (req, res, next) {
   log.debug(req.url);
+  log.debug(req.headers);
   log.debug(req.rawBody); // populated!
   res.status(200).json({
     code: 0,
