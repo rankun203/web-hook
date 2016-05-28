@@ -18,6 +18,17 @@ commands = commands.concat(secretCommands);
 
 var app = express();
 
+var rawBodySaver = function (req, res, buf, encoding) {
+  if (buf && buf.length) {
+    req.rawBody = buf.toString(encoding || 'utf8');
+  }
+}
+
+app.use(bodyParser.json({ verify: rawBodySaver }));
+app.use(bodyParser.urlencoded({ verify: rawBodySaver, extended: true }));
+app.use(bodyParser.raw({ verify: rawBodySaver, type: function () { return true } }));
+
+/*
 app.use(rawBody);
 
 // parse application/x-www-form-urlencoded
@@ -28,6 +39,7 @@ app.use(bodyParser.json());
 
 // parse application/vnd.api+json as json
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+*/
 
 // print all request info
 app.all('/o', function (req, res, next) {
