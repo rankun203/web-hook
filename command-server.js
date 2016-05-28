@@ -103,7 +103,7 @@ app.use(function (req, res, next) {
 });
 
 
-var port   = 1394;
+var port   = process.env.PORT || 1394;
 var server = app.listen(port, function () {
   log.debug('Listening... :', port);
 });
